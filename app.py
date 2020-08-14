@@ -38,7 +38,6 @@ def find():
     response['lat']=lat
     response['lng']=lng
     response['addresse'] = addr
-    print(response)
     for item in items :
         pages.append({'url' : _wiki_guide.url_from_id(item['pageid']), 'title' : item['title']})
     response['pages'] = pages
