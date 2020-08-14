@@ -1,0 +1,33 @@
+html, body {
+}
+
+.margin5 { margin: 5px; }
+.margin10 { margin: 10px; }
+.margin15 { margin: 15px; }
+
+.padding5 { padding: 5px; }
+.padding10 { padding: 10px; }
+.padding15 { padding: 15px; }
+
+.qr-img {
+  float: left;
+  height: 20%;
+  width: 20%;
+}
+
+.clearfix {
+  overflow: auto;
+}
+
+.side-margins {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.g-signin2{
+  width: 100%;
+}
+
+.g-signin2 > div{
+  margin: 0 auto;
+}

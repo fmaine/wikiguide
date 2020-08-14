@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}mamut.cool{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .important { color: #336699; }
+    </style>
+{% endblock %}
+{% block content %}
+<div class="content div-recherche">
+<h2>Rechercher</h2>
+<form id= "form-search" action="/" method="get">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Adresse</span>
+    </div>
+    <input type="text" class="form-control" id="address" name="address"
+    {% if response.address %} value="{{ response.address }}" {% endif %} >
+    <input type="hidden" class="form-control" id="lat" name="lat" >
+    <input type="hidden" class="form-control" id="lng" name="lng" >
+  </div>
+  <div class="div-buttons clearfix">
+    <button class="btn btn-primary float-left" type="submit">Rechercher</button>
+    <button type="button" onclick="autourDeMoi()" class="btn btn-primary float-right">Autour de moi</button>
+  </div>
+</form>
+<sr/>
+</div>
+
+<div class="content div-reponse">
+  <h2>Réponses</h2>
+  <p>Latitude : {{response.lat}}</p>
+  <p>Longitude : {{response.lng}}</p>
+  {% for page in response.pages %}
+  <div class="card margin5">
+    <div class="card-header"> <a href="{{ page.url }}">{{ page.title }}</a> </div>
+  </div>
+  {% endfor %}
+</div>
+
+<script>
+
+function submitPosition(position) {
+  document.getElementById("address").value = '';
+  document.getElementById("lat").value = position.coords.latitude;
+  document.getElementById("lng").value = position.coords.longitude;
+  document.getElementById("form-search").submit() ;
+}
+
+function autourDeMoi(){
+  console.log("getCoords")
+  if(navigator.geolocation)
+    navigator.geolocation.getCurrentPosition(submitPosition);
+}
+
+</script>
+{% endblock %}

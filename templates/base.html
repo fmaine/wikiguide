@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+
+  <head>
+    {% block head %}
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+
+    <!-- wg2 css -->
+    <link rel="stylesheet" href="base.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    {% endblock %}
+  </head>
+
+  <body>
+    <div class="container">{% block content %}{% endblock %}</div>
+    <div id="footer" class="container text-center">
+        {% block footer %}
+        <hr>
+        &copy; Copyright 2020  <a href="https://mamut.cool">mamut.cool</a>.
+        {% endblock %}
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/bootstrap/jquery-3.5.1.slim.min.js">
+    <script src="/bootstrap/popper.min.js">
+    <script src="/bootstrap/js/bootstrap.min.js">
+  </body>
+</html>
