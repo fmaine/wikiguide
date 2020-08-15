@@ -7,9 +7,9 @@
     </style>
 {% endblock %}
 {% block content %}
-<div class="content div-recherche">
-<h2>Rechercher</h2>
-<form id= "form-search" action="/" method="get">
+<div class="container div-recherche">
+<h2>Recherche Geographique</h2>
+<form id= "form-search-geo" action="/geofind" method="get">
   <div class="input-group mb-3">
     <div class="input-group-prepend">
       <span class="input-group-text">Adresse</span>
@@ -20,17 +20,28 @@
     <input type="hidden" class="form-control" id="lng" name="lng" >
   </div>
   <div class="div-buttons clearfix">
-    <button class="btn btn-primary float-left" type="submit">Rechercher</button>
-    <button type="button" onclick="autourDeMoi()" class="btn btn-primary float-right">Autour de moi</button>
+    <button class="btn btn-primary" type="submit">Rechercher</button>
+    <button type="submit" onclick="autourDeMoi()" class="btn btn-primary">Autour de moi</button>
+  </div>
+</form>
+<h2>Recherche par Mot Clef</h2>
+<form id= "form-search-words" action="/textfind" method="get">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Adresse</span>
+    </div>
+    <input type="text" class="form-control" id="address" name="words"
+    {% if response.words %} value="{{ response.words }}" {% endif %} >
+  </div>
+  <div class="div-buttons clearfix">
+    <button type="submit" class="btn btn-primary">Rechercher</button>
   </div>
 </form>
 <sr/>
 </div>
 
-<div class="content div-reponse">
+<div class="container div-reponse">
   <h2>Réponses</h2>
-  <p>Latitude : {{response.lat}}</p>
-  <p>Longitude : {{response.lng}}</p>
   {% for page in response.pages %}
   <div class="card margin5">
     <div class="card-header"> <a href="{{ page.url }}">{{ page.title }}</a> </div>
@@ -44,7 +55,7 @@ function submitPosition(position) {
   document.getElementById("address").value = '';
   document.getElementById("lat").value = position.coords.latitude;
   document.getElementById("lng").value = position.coords.longitude;
-  document.getElementById("form-search").submit() ;
+  document.getElementById("form-search-geo").submit() ;
 }
 
 function autourDeMoi(){

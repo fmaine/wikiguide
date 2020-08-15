@@ -20,8 +20,11 @@ _geo = geocoder.Geocoder()
 _wiki_guide = wikiguide.Wikiguide()
 
 @app.route("/", methods=['get'])
-@app.route("/find", methods=['get'])
-def find():
+def index():
+    return flask.render_template('find.html', response=None)
+
+@app.route("/geofind", methods=['get'])
+def geofind():
     response = {}
     items = []
     pages = []
@@ -42,6 +45,19 @@ def find():
         pages.append({'url' : _wiki_guide.url_from_id(item['pageid']), 'title' : item['title']})
     response['pages'] = pages
     return flask.render_template('find.html', response=response)
+
+@app.route("/textfind", methods=['get'])
+def textfind():
+    response = {}
+    items = []
+    pages = []
+    words = flask.request.args.get("words")
+    items = _wiki_guide.textsearch(words).get('query').get('search')
+    for item in items :
+        pages.append({'url' : _wiki_guide.url_from_id(item['pageid']), 'title' : item['title']})
+    response['pages'] = pages
+    return flask.render_template('find.html', response=response)
+
 
 @app.route("/test")
 def test():

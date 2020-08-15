@@ -7,12 +7,18 @@ import requests
 class Wikiguide():
 
     def __init__(self):
-        pass
+        self._lang = 'fr'
 
+    def textsearch(self,words):
+        pageids = []
+        baseurl = 'https://'+self._lang+'.wikipedia.org/w/api.php?action=query&list=search&utf8=&format=json&srsearch='
+        url = baseurl+words
+        response = requests.get(url)
+        return response.json()
 
     def geosearch(self,lat,lng):
         pageids = []
-        baseurl='https://fr.wikipedia.org/w/api.php?action=query&list=geosearch&gsradius=10000&gslimit=100&format=json&gscoord='
+        baseurl='https://'+self._lang+'.wikipedia.org/w/api.php?action=query&list=geosearch&gsradius=10000&gslimit=100&format=json&gscoord='
         url = "{}{}|{}".format(baseurl,lat,lng)
         response = requests.get(url)
         return response.json()
