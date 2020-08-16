@@ -7,21 +7,19 @@
     </style>
 {% endblock %}
 {% block content %}
-<div class="container div-recherche">
-<h2>Recherche Geographique</h2>
-<form id= "form-search-geo" action="/geofind" method="get">
+<div class="content div-recherche">
+<h2>Rechercher</h2>
+<form id= "form-search" action="/geofind" method="get">
   <div class="input-group mb-3">
     <div class="input-group-prepend">
       <span class="input-group-text">Adresse</span>
     </div>
     <input type="text" class="form-control" id="address" name="address"
     {% if response.address %} value="{{ response.address }}" {% endif %} >
-    <input type="hidden" class="form-control" id="lat" name="lat" >
-    <input type="hidden" class="form-control" id="lng" name="lng" >
   </div>
   <div class="div-buttons clearfix">
-    <button class="btn btn-primary" type="submit">Rechercher</button>
-    <button type="submit" onclick="autourDeMoi()" class="btn btn-primary">Autour de moi</button>
+    <button type="submit" class="btn btn-primary">Rechercher</button>
+    <button type="button" onclick="autourDeMoi()" class="btn btn-primary">Autour de moi</button>
   </div>
 </form>
 <h2>Recherche par Mot Clef</h2>
@@ -39,8 +37,8 @@
 </form>
 <sr/>
 </div>
-
-<div class="container div-reponse">
+{% if response.pages %}
+<div class="content div-reponse">
   <h2>Réponses</h2>
   {% for page in response.pages %}
   <div class="card margin5">
@@ -48,14 +46,18 @@
   </div>
   {% endfor %}
 </div>
+{% endif %}
 
 <script>
 
 function submitPosition(position) {
+  /*
   document.getElementById("address").value = '';
   document.getElementById("lat").value = position.coords.latitude;
   document.getElementById("lng").value = position.coords.longitude;
-  document.getElementById("form-search-geo").submit() ;
+  document.getElementById("form-search").submit() ;
+  */
+  document.location.href = '/geofind?lat='+position.coords.latitude+'&lng='+position.coords.longitude;
 }
 
 function autourDeMoi(){

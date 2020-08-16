@@ -13,7 +13,7 @@ class Geocoder():
 
     _cache = dict()
     _cache_dir  = ''
-    _cache_filename = 'geocoder_cache.json'
+    _cache_filename = 'data/geocoder_cache.json'
 
     def __init__(self,cache_dir=''):
         self._cache_dir = cache_dir

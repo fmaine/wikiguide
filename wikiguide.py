@@ -24,4 +24,4 @@ class Wikiguide():
         return response.json()
 
     def url_from_id(self,pageid):
-        return 'https://fr.wikipedia.org/?curid='+str(pageid)
+        return 'https://fr.m.wikipedia.org/?curid='+str(pageid)
