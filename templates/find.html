@@ -1,14 +1,8 @@
 {% extends "base.html" %}
 {% block title %}mamut.cool{% endblock %}
-{% block head %}
-    {{ super() }}
-    <style type="text/css">
-        .important { color: #336699; }
-    </style>
-{% endblock %}
 {% block content %}
-<div class="content div-recherche">
-<h2>Rechercher</h2>
+<div class="container div-recherche padding10 margin15">
+<h2>Recherche Géolocalisée</h2>
 <form id= "form-search" action="/geofind" method="get">
   <div class="input-group mb-3">
     <div class="input-group-prepend">
@@ -35,10 +29,10 @@
     <button type="submit" class="btn btn-primary">Rechercher</button>
   </div>
 </form>
-<sr/>
 </div>
 {% if response.pages %}
-<div class="content div-reponse">
+<hr/>
+<div class="container div-reponse margin15">
   <h2>Réponses</h2>
   {% for page in response.pages %}
   <div class="card margin5">
