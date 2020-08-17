@@ -39,7 +39,11 @@ def find():
     response['lng']=lng
     response['addresse'] = addr
     for item in items :
-        pages.append({'url' : _wiki_guide.url_from_id(item['pageid']), 'title' : item['title']})
+        pages.append({
+            'pageid' : item['pageid'],
+            'url' : _wiki_guide.url_from_id(item['pageid']),
+            'title' : item['title'],
+            })
     response['pages'] = pages
     return flask.render_template('find.html', response=response)
 
@@ -51,9 +55,18 @@ def textfind():
     words = flask.request.args.get("words")
     items = _wiki_guide.textsearch(words).get('query').get('search')
     for item in items :
-        pages.append({'url' : _wiki_guide.url_from_id(item['pageid']), 'title' : item['title']})
+        pages.append({
+            'pageid' : item['pageid'],
+            'url' : _wiki_guide.url_from_id(item['pageid']),
+            'title' : item['title'],
+            })
     response['pages'] = pages
     return flask.render_template('find.html', response=response)
+
+@app.route("/wikipage/<int:pageid>", methods=['get'])
+def wikipage(pageid):
+    return flask.redirect(_wiki_guide.id_to_fullurl(pageid),code=302)
+
 
 @app.route("/test")
 def test():

@@ -42,13 +42,17 @@
   <h2>Réponses</h2>
   {% for page in response.pages %}
   <div class="card margin5">
-    <div class="card-header"> <a href="{{ page.url }}">{{ page.title }}</a> </div>
+    <a class="card-header" href="/wikipage/{{ page.pageid }}">{{ page.title }}</a>
   </div>
   {% endfor %}
 </div>
 {% endif %}
 
 <script>
+
+function openPageId(pageId){
+  document.location.href = '/wikipage/'+pageId
+}
 
 function submitPosition(position) {
   /*
