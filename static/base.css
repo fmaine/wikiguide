@@ -9,10 +9,6 @@ html, body {
 .padding10 { padding: 10px; }
 .padding15 { padding: 15px; }
 
-h1,h2 {
-  margin-top : 20 px;
-}
-
 .qr-img {
   float: left;
   height: 20%;

@@ -2,7 +2,8 @@
 {% block title %}mamut.cool{% endblock %}
 {% block content %}
 <div class="container div-recherche">
-  <h3>Recherche Géolocalisée de pages Wikipedia</h3>
+  <p>Trouvez les pages Wikipedia autour de vous</p>
+  <h3>Recherche Géolocalisée</h3>
   <form id= "form-search" action="/geofind" method="get">
     <div class="input-group mb-3">
       <div class="input-group-prepend">
@@ -14,6 +15,20 @@
     <div class="div-buttons clearfix">
       <button type="submit" class="btn btn-primary"><i class="fas fa-map-marked"></i> Rechercher</button>
       <button type="button" onclick="autourDeMoi()" class="btn btn-primary"><i class="fas fa-map-marker-alt"></i> Autour de moi</button>
+    </div>
+  </form>
+  <br>
+  <h3>Recherche par Mot Clef</h3>
+  <form id= "form-search-words" action="/textfind" method="get">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Mots clefs</span>
+      </div>
+      <input type="text" class="form-control" id="words" name="words"
+      {% if response.words %} value="{{ response.words }}" {% endif %} >
+    </div>
+    <div class="div-buttons clearfix">
+      <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Rechercher</button>
     </div>
   </form>
 </div>
