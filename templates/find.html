@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}mamut.cool{% endblock %}
 {% block content %}
-<div class="container div-recherche padding10 margin15">
+<div class="container div-recherche padding15 margin15">
 <h2>Recherche Géolocalisée</h2>
 <form id= "form-search" action="/geofind" method="get">
   <div class="input-group mb-3">
@@ -12,21 +12,22 @@
     {% if response.address %} value="{{ response.address }}" {% endif %} >
   </div>
   <div class="div-buttons clearfix">
-    <button type="submit" class="btn btn-primary">Rechercher</button>
-    <button type="button" onclick="autourDeMoi()" class="btn btn-primary">Autour de moi</button>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-map-marked"></i> Rechercher</button>
+    <button type="button" onclick="autourDeMoi()" class="btn btn-primary"><i class="fas fa-map-marker-alt"></i> Autour de moi</button>
   </div>
 </form>
+<br>
 <h2>Recherche par Mot Clef</h2>
 <form id= "form-search-words" action="/textfind" method="get">
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text">Adresse</span>
+      <span class="input-group-text">Mots clefs</span>
     </div>
-    <input type="text" class="form-control" id="address" name="words"
+    <input type="text" class="form-control" id="words" name="words"
     {% if response.words %} value="{{ response.words }}" {% endif %} >
   </div>
   <div class="div-buttons clearfix">
-    <button type="submit" class="btn btn-primary">Rechercher</button>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Rechercher</button>
   </div>
 </form>
 </div>
